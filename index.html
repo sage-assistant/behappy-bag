@@ -319,6 +319,59 @@
       color: #4d4b50;
     }
 
+    .variants-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .variant-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 26px rgba(50, 49, 51, 0.1);
+      cursor: pointer;
+      transition: transform 320ms ease, box-shadow 320ms ease;
+    }
+
+    .variant-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 36px rgba(50, 49, 51, 0.16);
+    }
+
+    .variant-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    .variant-info {
+      padding: 0.8rem 1rem;
+      text-align: center;
+    }
+
+    .variant-info h3 {
+      margin: 0 0 0.15rem;
+      font-size: 1rem;
+    }
+
+    .variant-info p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--charcoal-soft);
+    }
+
+    .variant-swatch {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--line);
+      vertical-align: middle;
+      margin-right: 0.35rem;
+    }
+
     .features-grid {
       display: grid;
       gap: 0.9rem;
@@ -565,6 +618,10 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
+      .variants-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
       .features-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -611,6 +668,7 @@
       </a>
       <nav class="top-links" aria-label="Primary">
         <a href="#story">Story</a>
+        <a href="#colors">Colors</a>
         <a href="#details">Details</a>
         <a href="#mood">Mood</a>
         <a href="#reviews">Reviews</a>
@@ -635,7 +693,7 @@
         </article>
 
         <figure class="hero-photo-wrap" data-reveal>
-          <img class="hero-photo" src="product-photo.jpg" alt="Handmade Be Happy Bag with monkey and koala felt patches and yellow embroidered text">
+          <img class="hero-photo" src="images/hero-white.png" alt="Handmade Be Happy Bag with monkey and koala felt patches and yellow embroidered text">
           <figcaption class="photo-note">One unique handmade piece</figcaption>
         </figure>
       </div>
@@ -665,6 +723,48 @@
             <p>
               No two bags are exactly alike, each tote carries tiny variations that prove a human hand made it with care.
             </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="colors">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Choose Your Color</h2>
+          <p>
+            Same handmade charm, same joyful patches. Pick the canvas that matches your mood.
+          </p>
+        </div>
+
+        <div class="variants-grid">
+          <article class="variant-card" data-reveal>
+            <img src="images/hero-white.png" alt="Be Happy Bag in classic white">
+            <div class="variant-info">
+              <h3><span class="variant-swatch" style="background:#f5f0e8"></span>Classic White</h3>
+              <p>The original</p>
+            </div>
+          </article>
+          <article class="variant-card" data-reveal>
+            <img src="images/variant-navy.png" alt="Be Happy Bag in navy blue">
+            <div class="variant-info">
+              <h3><span class="variant-swatch" style="background:#2c3e5a"></span>Midnight Navy</h3>
+              <p>Bold and versatile</p>
+            </div>
+          </article>
+          <article class="variant-card" data-reveal>
+            <img src="images/variant-sage.png" alt="Be Happy Bag in sage green">
+            <div class="variant-info">
+              <h3><span class="variant-swatch" style="background:#98aa95"></span>Sage Green</h3>
+              <p>Calm and earthy</p>
+            </div>
+          </article>
+          <article class="variant-card" data-reveal>
+            <img src="images/variant-rose.png" alt="Be Happy Bag in dusty rose">
+            <div class="variant-info">
+              <h3><span class="variant-swatch" style="background:#d4a0a0"></span>Dusty Rose</h3>
+              <p>Warm and soft</p>
+            </div>
           </article>
         </div>
       </div>
@@ -734,16 +834,16 @@
 
         <div class="mood-grid">
           <figure class="mood-card" data-reveal>
-            <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=900&q=80" alt="Local farmers market scene with fresh flowers and produce">
+            <img src="images/lifestyle-market.png" alt="Woman carrying the Be Happy Bag at a sunlit farmers market">
             <figcaption class="mood-overlay">Morning market strolls</figcaption>
           </figure>
           <figure class="mood-card" data-reveal>
-            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80" alt="Bright cafe table with coffee and journal">
+            <img src="images/lifestyle-cafe.png" alt="Be Happy Bag on a cafe table next to a latte and book">
             <figcaption class="mood-overlay">Slow coffee moments</figcaption>
           </figure>
           <figure class="mood-card" data-reveal>
-            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=900&q=80" alt="Person carrying a tote in warm natural light">
-            <figcaption class="mood-overlay">Weekend gift idea</figcaption>
+            <img src="images/lifestyle-flatlay.png" alt="Flat lay of Be Happy Bag with dried flowers, journal, and sunglasses">
+            <figcaption class="mood-overlay">The perfect gift</figcaption>
           </figure>
         </div>
       </div>
