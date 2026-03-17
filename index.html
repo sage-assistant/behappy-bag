@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be Happy Bag | Handmade Tote</title>
+  <meta name="description" content="Be Happy Bag is a handmade cotton tote with hand stitched animal patches and joyful yellow embroidery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fff9ef;
+      --soft-white: #fffdf8;
+      --sun: #f7d24d;
+      --sun-deep: #efbc1c;
+      --charcoal: #323133;
+      --charcoal-soft: #535157;
+      --sage: #98aa95;
+      --sage-light: #dbe8d7;
+      --card: #ffffff;
+      --line: rgba(50, 49, 51, 0.12);
+      --shadow: 0 20px 40px rgba(50, 49, 51, 0.12);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --maxw: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+      color: var(--charcoal);
+      background: radial-gradient(circle at 10% 15%, #fffbe8 0%, transparent 45%),
+                  radial-gradient(circle at 95% 10%, #ecf3e8 0%, transparent 35%),
+                  linear-gradient(180deg, #fffdf8 0%, #fff9ef 35%, #fffdf8 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(var(--maxw), calc(100% - 2.2rem));
+      margin: 0 auto;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.08;
+      background-image: radial-gradient(#000 0.4px, transparent 0.4px);
+      background-size: 4px 4px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 253, 248, 0.8);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar .shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.7rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .seal {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, var(--sun), #ffe99f);
+      box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.14);
+    }
+
+    .seal svg {
+      width: 17px;
+      height: 17px;
+      fill: var(--charcoal);
+    }
+
+    .top-links {
+      display: none;
+      gap: 1rem;
+      font-size: 0.92rem;
+      color: var(--charcoal-soft);
+    }
+
+    .top-links a {
+      transition: color 180ms ease;
+    }
+
+    .top-links a:hover {
+      color: var(--charcoal);
+    }
+
+    .mini-cta {
+      display: inline-block;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.62rem 1rem;
+      font-weight: 700;
+      background: var(--charcoal);
+      color: #fff;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      box-shadow: 0 10px 20px rgba(50, 49, 51, 0.2);
+    }
+
+    .mini-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(50, 49, 51, 0.24);
+    }
+
+    .hero {
+      position: relative;
+      padding: 2.2rem 0 1.2rem;
+    }
+
+    .hero-wrap {
+      display: grid;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .hero-copy {
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(247, 210, 77, 0.22);
+      top: -50px;
+      right: -40px;
+      filter: blur(8px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid #f4e7b3;
+      background: #fff9e3;
+      padding: 0.26rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #715a11;
+    }
+
+    .hero h1 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2.3rem, 8vw, 4.2rem);
+      line-height: 1.05;
+      margin: 0.7rem 0 0.7rem;
+      font-weight: 700;
+      color: #2d2c2f;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 44ch;
+      color: var(--charcoal-soft);
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      margin-top: 1.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.78rem;
+    }
+
+    .cta-main {
+      display: inline-block;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.86rem 1.45rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #241f15;
+      background: linear-gradient(140deg, var(--sun), #ffe087);
+      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(247, 210, 77, 0.34);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+      font-family: inherit;
+    }
+
+    .cta-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 32px rgba(247, 210, 77, 0.44);
+    }
+
+    .price-pill {
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      border-radius: 30px;
+      padding: 0.9rem;
+      background: linear-gradient(180deg, #ffffff, #fdf7ea);
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .hero-photo {
+      border-radius: 22px;
+      width: 100%;
+      object-fit: cover;
+      min-height: 320px;
+      max-height: 560px;
+    }
+
+    .photo-note {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(255, 253, 248, 0.93);
+      border: 1px solid rgba(50, 49, 51, 0.1);
+      border-radius: 12px;
+      padding: 0.48rem 0.7rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    section {
+      padding: 3rem 0;
+      position: relative;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 1.7rem;
+    }
+
+    .section-head h2 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .section-head p {
+      margin: 0.65rem auto 0;
+      max-width: 64ch;
+      color: var(--charcoal-soft);
+    }
+
+    .story {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .story-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      box-shadow: 0 14px 25px rgba(50, 49, 51, 0.08);
+    }
+
+    .story-card p {
+      margin: 0;
+      color: #4d4b50;
+    }
+
+    .features-grid {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .feature {
+      border-radius: var(--radius-md);
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 1rem;
+      box-shadow: 0 12px 24px rgba(50, 49, 51, 0.08);
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 0.8rem;
+      align-items: start;
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(160deg, #fff6cf, #f0f6e9);
+      border: 1px solid #ece8d5;
+    }
+
+    .icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--charcoal);
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature h3 {
+      margin: 0 0 0.2rem;
+      font-size: 1.03rem;
+    }
+
+    .feature p {
+      margin: 0;
+      color: #57555b;
+      font-size: 0.95rem;
+    }
+
+    .mood-grid {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .mood-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      min-height: 220px;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 26px rgba(50, 49, 51, 0.12);
+    }
+
+    .mood-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .mood-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .mood-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 0.9rem;
+      color: #fff;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(30, 30, 32, 0.82) 100%);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .reviews {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .review {
+      border-radius: var(--radius-md);
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 1rem;
+      box-shadow: 0 12px 24px rgba(50, 49, 51, 0.08);
+    }
+
+    .review strong {
+      display: block;
+      margin-top: 0.6rem;
+      font-size: 0.94rem;
+    }
+
+    .review-stars {
+      display: inline-flex;
+      gap: 0.22rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .review-stars svg {
+      width: 16px;
+      height: 16px;
+      fill: #f2c744;
+    }
+
+    .buy-box {
+      background: linear-gradient(165deg, #fffefb 0%, #f5f9f1 100%);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .buy-box::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(247, 210, 77, 0.17);
+      top: -110px;
+      left: -70px;
+      filter: blur(5px);
+    }
+
+    .buy-box h2 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0;
+      line-height: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    .buy-box p {
+      margin: 0.7rem auto 1rem;
+      max-width: 45ch;
+      color: var(--charcoal-soft);
+      position: relative;
+      z-index: 2;
+    }
+
+    .price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.25rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .price .val {
+      font-size: 2.2rem;
+      line-height: 1;
+      color: #202024;
+    }
+
+    .price .unit {
+      font-size: 1rem;
+      color: #4b4950;
+    }
+
+    .buy-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn-ink {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.86rem 1.4rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .btn-ink.primary {
+      color: #241f15;
+      background: linear-gradient(150deg, var(--sun), #ffe293);
+      box-shadow: 0 14px 28px rgba(247, 210, 77, 0.34);
+    }
+
+    .btn-ink.secondary {
+      color: #fff;
+      background: #2f2d32;
+      box-shadow: 0 14px 26px rgba(47, 45, 50, 0.25);
+    }
+
+    .btn-ink:hover {
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.7rem 0 2.5rem;
+      color: #5f5c63;
+      font-size: 0.9rem;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 740px) {
+      .top-links {
+        display: flex;
+      }
+
+      .hero {
+        padding: 3.4rem 0 2rem;
+      }
+
+      .hero-wrap {
+        grid-template-columns: 1.04fr 0.96fr;
+        gap: 1.5rem;
+      }
+
+      .story {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mood-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .reviews {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .buy-box {
+        padding: 2.1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      [data-reveal],
+      .mood-card img,
+      .hero-photo-wrap,
+      .cta-main,
+      .btn-ink,
+      .mini-cta {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="shell">
+      <a class="brand" href="#top" aria-label="Be Happy Bag home">
+        <span class="seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21c-4.4 0-8-3.6-8-8a8 8 0 0 1 16 0c0 4.4-3.6 8-8 8zm0-13.5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm-3.5 5a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm7 0a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg>
+        </span>
+        <span>Be Happy Bag</span>
+      </a>
+      <nav class="top-links" aria-label="Primary">
+        <a href="#story">Story</a>
+        <a href="#details">Details</a>
+        <a href="#mood">Mood</a>
+        <a href="#reviews">Reviews</a>
+      </nav>
+      <a href="#buy" class="mini-cta">Shop Now</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-wrap">
+        <article class="hero-copy" data-reveal>
+          <span class="eyebrow">Handmade Artisan Tote</span>
+          <h1>Carry Joy in Every Step</h1>
+          <p>
+            Meet the Be Happy Bag, a handcrafted white cotton tote with hand stitched animal patches and bright yellow embroidery that brings a calm joyful mood to your day.
+          </p>
+          <div class="hero-actions">
+            <a href="#buy" class="cta-main">Get Your Be Happy Bag</a>
+            <span class="price-pill">$45 USD</span>
+          </div>
+        </article>
+
+        <figure class="hero-photo-wrap" data-reveal>
+          <img class="hero-photo" src="product-photo.jpg" alt="Handmade Be Happy Bag with monkey and koala felt patches and yellow embroidered text">
+          <figcaption class="photo-note">One unique handmade piece</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="story">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>The Story</h2>
+          <p>
+            Every Be Happy Bag begins as a plain cotton canvas and becomes a warm little work of art through patient stitching, soft felt detailing, and a message that reminds us to choose joy.
+          </p>
+        </div>
+
+        <div class="story">
+          <article class="story-card" data-reveal>
+            <p>
+              The monkey and koala patches are cut from gray felt and sewn by hand, stitch by stitch, so each expression feels personal and alive.
+            </p>
+          </article>
+          <article class="story-card" data-reveal>
+            <p>
+              The yellow Be happy lettering runs down the center like a little thread of sunshine, bold enough to notice, soft enough to feel timeless.
+            </p>
+          </article>
+          <article class="story-card" data-reveal>
+            <p>
+              No two bags are exactly alike, each tote carries tiny variations that prove a human hand made it with care.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="details">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Crafted Details</h2>
+          <p>
+            Light to carry, easy to style, and designed to feel soulful from morning market trips to relaxed cafe afternoons.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature" data-reveal>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 6l4 4m10-4l-4 4M12 3v18M3 12h18"/></svg>
+            </div>
+            <div>
+              <h3>Hand stitched patchwork</h3>
+              <p>Monkey and koala felt patches are sewn by hand for a tactile handmade finish.</p>
+            </div>
+          </article>
+
+          <article class="feature" data-reveal>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3c4 0 7 3 7 7 0 5-7 11-7 11S5 15 5 10c0-4 3-7 7-7z"/><path d="M9 10c1.2 1.4 2.2 2.8 3 4.3 1.2-2.2 2.3-3.5 3.5-4.7"/></svg>
+            </div>
+            <div>
+              <h3>Eco mindful cotton</h3>
+              <p>White cotton body with fabric handles, reusable, breathable, and gentle on daily essentials.</p>
+            </div>
+          </article>
+
+          <article class="feature" data-reveal>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/><circle cx="12" cy="12" r="8"/></svg>
+            </div>
+            <div>
+              <h3>Light and easy</h3>
+              <p>Comfortable to carry with a slim profile that folds easily into your day without bulk.</p>
+            </div>
+          </article>
+
+          <article class="feature" data-reveal>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 18l8-13 8 13H4z"/><path d="M9 14h6"/></svg>
+            </div>
+            <div>
+              <h3>One of a kind charm</h3>
+              <p>Small differences in stitching make every bag singular, personal, and gift worthy.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="mood">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Everyday Mood</h2>
+          <p>
+            Imagine your Be Happy Bag in places that feel slow, bright, and full of human warmth.
+          </p>
+        </div>
+
+        <div class="mood-grid">
+          <figure class="mood-card" data-reveal>
+            <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=900&q=80" alt="Local farmers market scene with fresh flowers and produce">
+            <figcaption class="mood-overlay">Morning market strolls</figcaption>
+          </figure>
+          <figure class="mood-card" data-reveal>
+            <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80" alt="Bright cafe table with coffee and journal">
+            <figcaption class="mood-overlay">Slow coffee moments</figcaption>
+          </figure>
+          <figure class="mood-card" data-reveal>
+            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=900&q=80" alt="Person carrying a tote in warm natural light">
+            <figcaption class="mood-overlay">Weekend gift idea</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="shell">
+        <div class="section-head" data-reveal>
+          <h2>Loved by Thoughtful Shoppers</h2>
+          <p>
+            Real style, real joy, and a little handmade magic that people notice right away.
+          </p>
+        </div>
+
+        <div class="reviews">
+          <article class="review" data-reveal>
+            <div class="review-stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+            </div>
+            <p>
+              I bought this as a small gift for my sister and she smiled the second she saw the stitching. It feels so personal and sweet.
+            </p>
+            <strong>Elena R, New York</strong>
+          </article>
+
+          <article class="review" data-reveal>
+            <div class="review-stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+            </div>
+            <p>
+              The cotton is lightweight but still sturdy enough for my notebook, water bottle, and fruit. The yellow embroidery is beautiful in person.
+            </p>
+            <strong>Marina T, Austin</strong>
+          </article>
+
+          <article class="review" data-reveal>
+            <div class="review-stars" aria-label="5 stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.88 1.18 6.85L12 17.77l-6.18 3.23L7 14.15l-5-4.88 6.91-1.01z"/></svg>
+            </div>
+            <p>
+              It looks boutique and handcrafted, not mass made. I get compliments every time I carry it to the cafe.
+            </p>
+            <strong>Sophia L, Seattle</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="buy">
+      <div class="shell">
+        <article class="buy-box" data-reveal>
+          <h2>Bring Home a Little Joy</h2>
+          <p>
+            Be Happy Bag is affordable, thoughtful, and ready to become your favorite daily tote or your next meaningful gift.
+          </p>
+          <div class="price" aria-label="Price in United States dollars">
+            <span class="val">$45</span>
+            <span class="unit">USD</span>
+          </div>
+          <div class="buy-actions">
+            <button class="btn-ink primary" type="button">Add to Cart</button>
+            <button class="btn-ink secondary" type="button">Buy for a Friend</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Crafted by hand, designed to brighten your day. Be Happy Bag.
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+
+    const heroPhoto = document.querySelector('.hero-photo-wrap');
+    let ticking = false;
+
+    function updateParallax() {
+      const y = window.scrollY;
+      const tilt = Math.min(6, y * 0.012);
+      if (heroPhoto) {
+        heroPhoto.style.transform = `translateY(${Math.min(16, y * 0.05)}px) rotateX(${tilt * 0.28}deg)`;
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
