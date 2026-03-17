@@ -1,771 +1,402 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Be Happy Bag | Scrapbook V3</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Be Happy Bag</title>
+  <meta name="description" content="Carry something that makes you smile.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Kalam:wght@400;700&family=Pangolin&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --kraft: #c6a574;
-      --kraft-deep: #b08f61;
-      --paper: #f8f4ea;
-      --paper-ink: #35281d;
-      --yellow: #f7d95b;
-      --coral: #e86f5c;
-      --sky: #79b8f6;
-      --green: #6ca86f;
-      --stamp: #9d3a35;
-      --shadow-soft: 0 8px 22px rgba(52, 33, 16, 0.16);
-      --shadow-lift: 0 20px 34px rgba(34, 21, 10, 0.24);
-      --line: rgba(65, 48, 31, 0.15);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-      font-family: Inter, sans-serif;
-      color: var(--paper-ink);
-      background:
-        radial-gradient(1800px 800px at 10% -20%, rgba(255, 237, 182, 0.22), transparent 60%),
-        radial-gradient(900px 600px at 90% 10%, rgba(128, 190, 255, 0.16), transparent 55%),
-        linear-gradient(125deg, var(--kraft), var(--kraft-deep));
-      overflow-x: clip;
-    }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 100;
-    }
-
-    body::before {
-      background:
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 1px, transparent 1px, transparent 4px),
-        repeating-linear-gradient(90deg, rgba(48, 31, 17, 0.03) 0, rgba(48, 31, 17, 0.03) 1px, transparent 1px, transparent 3px);
-      opacity: 0.45;
-      mix-blend-mode: multiply;
-    }
-
-    body::after {
-      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08), transparent 40%),
-                  radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.09), transparent 55%);
-      opacity: 0.4;
-    }
-
-    .page {
-      position: relative;
-      width: min(1100px, 95vw);
-      margin: 0 auto;
-      padding: 28px 0 90px;
-    }
-
-    .washi {
-      position: absolute;
-      z-index: 4;
-      width: 130px;
-      height: 28px;
-      border-radius: 4px;
-      transform: rotate(var(--rot));
-      opacity: 0.76;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.2) 40%, rgba(255, 255, 255, 0.08));
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-      overflow: hidden;
-      transition: transform 0.35s ease;
-    }
-
-    .washi::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: var(--tone);
-      mix-blend-mode: multiply;
-    }
-
-    .washi::after {
-      content: "";
-      position: absolute;
-      inset: -20% -40%;
-      background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.5) 46%, transparent 63%);
-      transform: translateX(-60%);
-      transition: transform 0.45s ease;
-    }
-
-    .washi:hover::after {
-      transform: translateX(55%);
-    }
-
-    .washi:hover {
-      transform: rotate(calc(var(--rot) * 1.1)) translateY(-2px);
-    }
-
-    .section {
-      position: relative;
-      margin: 48px 0;
-      padding: 34px clamp(16px, 3vw, 36px);
-      border-radius: 16px;
-      box-shadow: var(--shadow-soft);
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-      z-index: 2;
-    }
-
-    .section.in {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .paper {
-      background:
-        linear-gradient(transparent, transparent),
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.95) 45%, rgba(243, 238, 225, 0.95));
-      clip-path: polygon(0 4%, 3% 0, 10% 3%, 17% 1%, 25% 4%, 35% 2%, 44% 5%, 55% 2%, 68% 5%, 76% 1%, 85% 4%, 94% 2%, 100% 5%, 98% 16%, 100% 26%, 97% 40%, 100% 58%, 97% 71%, 100% 83%, 95% 97%, 89% 94%, 81% 98%, 73% 95%, 64% 98%, 53% 95%, 41% 99%, 29% 95%, 17% 99%, 8% 95%, 2% 98%, 0 90%, 2% 75%, 0 60%, 2% 45%, 0 33%, 2% 21%);
-    }
-
-    .lined {
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(118, 161, 205, 0.2) 0,
-          rgba(118, 161, 205, 0.2) 2px,
-          rgba(255, 255, 255, 0.94) 2px,
-          rgba(255, 255, 255, 0.94) 42px
-        );
-    }
-
-    h1,
-    h2,
-    h3 {
-      margin: 0;
-      font-family: Pangolin, cursive;
-      line-height: 1;
-      letter-spacing: 0.01em;
-    }
-
-    p {
-      margin: 0;
-      line-height: 1.5;
-      font-size: clamp(0.98rem, 1vw, 1.08rem);
-    }
-
-    .cover {
-      min-height: 82vh;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 22px;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .title-stack {
-      padding: 10px 0 8px;
-      position: relative;
-      transform: rotate(-2deg);
-    }
-
-    .title-stack h1 {
-      font-size: clamp(3.6rem, 10vw, 7.5rem);
-      color: #2f2218;
-      text-shadow: 2px 2px 0 #fbeebf, 5px 4px 0 rgba(0, 0, 0, 0.1);
-    }
-
-    .scribble {
-      font-family: Kalam, cursive;
-      font-size: clamp(1rem, 1.8vw, 1.45rem);
-      margin-top: 8px;
-      max-width: 33ch;
-    }
-
-    .stamp {
-      display: inline-block;
-      margin-top: 18px;
-      padding: 9px 15px;
-      border: 3px double rgba(157, 58, 53, 0.6);
-      color: var(--stamp);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font: 700 0.78rem/1 Inter, sans-serif;
-      transform: rotate(-7deg);
-      filter: saturate(0.8) contrast(0.9);
-      background: rgba(255, 243, 243, 0.35);
-      box-shadow: inset 0 0 0 2px rgba(157, 58, 53, 0.18);
-    }
-
-    .tiny-note {
-      position: absolute;
-      font-family: Kalam, cursive;
-      font-size: 0.85rem;
-      color: rgba(47, 34, 24, 0.9);
-      transform: rotate(7deg);
-    }
-
-    .tiny-a { top: 10px; right: 18px; }
-    .tiny-b { bottom: 14px; left: 16px; transform: rotate(-8deg); }
-
-    .polaroid {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-      background: #fff;
-      border-radius: 4px;
-      padding: 14px 14px 48px;
-      box-shadow: 0 8px 18px rgba(49, 34, 22, 0.28);
-      transform: rotate(var(--tilt, -4deg));
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-
-    .polaroid:hover {
-      transform: rotate(0deg) translateY(-8px) scale(1.03);
-      box-shadow: var(--shadow-lift);
-      z-index: 8;
-    }
-
-    .polaroid img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
-      filter: saturate(1.05) contrast(1.05);
-    }
-
-    .caption {
-      position: absolute;
-      left: 15px;
-      right: 15px;
-      bottom: 14px;
-      text-align: center;
-      font-family: Kalam, cursive;
-      font-size: 1.05rem;
-    }
-
-    .tape-corner,
-    .tape-top {
-      position: absolute;
-      background: rgba(252, 235, 156, 0.7);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(1px);
-    }
-
-    .tape-corner {
-      width: 50px;
-      height: 16px;
-      top: -9px;
-      left: -10px;
-      transform: rotate(-26deg);
-    }
-
-    .tape-corner::after {
-      content: "";
-      position: absolute;
-      width: 45px;
-      height: 15px;
-      right: -226px;
-      top: 205px;
-      transform: rotate(56deg);
-      background: rgba(121, 184, 246, 0.56);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-    }
-
-    .tape-top {
-      width: 76px;
-      height: 18px;
-      top: -13px;
-      left: calc(50% - 38px);
-      transform: rotate(-2deg);
-      background: rgba(232, 111, 92, 0.62);
-    }
-
-    .cover .photo-wrap {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      padding: 18px;
-      transform: rotate(3deg);
-    }
-
-    .doodle {
-      position: absolute;
-      width: 92px;
-      height: 92px;
-      opacity: 0.75;
-      animation: drift 5.4s ease-in-out infinite;
-      transform-origin: center;
-      pointer-events: none;
-    }
-
-    .d1 { top: 14px; right: 8%; color: var(--coral); }
-    .d2 { bottom: 18px; left: 8%; color: var(--sky); animation-delay: 1.4s; }
-
-    @keyframes drift {
-      0%, 100% { transform: rotate(-6deg) translateY(0); }
-      50% { transform: rotate(6deg) translateY(-8px); }
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .hand {
-      font-family: Kalam, cursive;
-      font-size: clamp(1.05rem, 1.8vw, 1.36rem);
-      max-width: 44ch;
-    }
-
-    .mini-photos {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      padding-top: 8px;
-    }
-
-    .mini-photos .polaroid {
-      max-width: unset;
-      padding-bottom: 42px;
-    }
-
-    .postit {
-      position: absolute;
-      width: 160px;
-      min-height: 128px;
-      padding: 14px;
-      font-family: Kalam, cursive;
-      font-size: 0.95rem;
-      box-shadow: 0 8px 14px rgba(47, 33, 20, 0.2);
-      transform: rotate(var(--stick-rot));
-      z-index: 3;
-      color: rgba(47, 33, 20, 0.95);
-    }
-
-    .postit::before {
-      content: "";
-      position: absolute;
-      top: -8px;
-      left: calc(50% - 26px);
-      width: 52px;
-      height: 14px;
-      background: rgba(255, 255, 255, 0.62);
-      border-radius: 4px;
-      transform: rotate(2deg);
-    }
-
-    .postit.yellow { background: #f5e889; }
-    .postit.pink { background: #f8c2be; }
-    .postit.blue { background: #bae1ff; }
-
-    .colors-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .colors-head h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      transform: rotate(-2deg);
-    }
-
-    .smallprint {
-      font-size: 0.78rem;
-      letter-spacing: 0.03em;
-    }
-
-    .variants {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(160px, 1fr));
-      gap: 20px;
-      align-items: end;
-    }
-
-    .variant-card {
-      position: relative;
-      transform: rotate(var(--vrot));
-      transition: transform 0.25s ease;
-    }
-
-    .variant-card:hover {
-      transform: rotate(0deg);
-      z-index: 8;
-    }
-
-    .variant-card .pin {
-      position: absolute;
-      top: -10px;
-      left: calc(50% - 8px);
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #d33d44;
-      box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.18), 0 2px 3px rgba(0, 0, 0, 0.26);
-      z-index: 9;
-    }
-
-    .moments-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 14px;
-      align-items: end;
-    }
-
-    .moments-grid .polaroid:nth-child(1) { grid-column: span 2; --tilt: -7deg; }
-    .moments-grid .polaroid:nth-child(2) { grid-column: span 2; --tilt: 4deg; }
-    .moments-grid .polaroid:nth-child(3) { grid-column: span 2; --tilt: -2deg; }
-
-    .film {
-      grid-column: 2 / span 4;
-      background: repeating-linear-gradient(90deg, #171717 0, #171717 18%, #252525 18%, #252525 20%);
-      border-radius: 10px;
-      padding: 10px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      box-shadow: var(--shadow-soft);
-      transform: rotate(-1.5deg);
-    }
-
-    .film img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border: 4px solid #f2f2f2;
-    }
-
-    .notes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(150px, 1fr));
-      gap: 18px;
-      margin-top: 14px;
-    }
-
-    .love-note {
-      min-height: 170px;
-      padding: 16px;
-      position: relative;
-      transform: rotate(var(--nrot));
-      box-shadow: 0 12px 18px rgba(48, 31, 18, 0.24);
-      font-family: Kalam, cursive;
-      display: grid;
-      gap: 10px;
-      align-content: start;
-      background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), transparent 48%),
-        var(--note-color);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .love-note::after {
-      content: "";
-      position: absolute;
-      right: -8px;
-      top: -8px;
-      width: 36px;
-      height: 36px;
-      background: rgba(255, 255, 255, 0.58);
-      transform: rotate(35deg);
-      box-shadow: -1px 1px 0 rgba(0, 0, 0, 0.1);
-    }
-
-    .love-note b {
-      font-family: Pangolin, cursive;
-      font-size: 1.1rem;
-    }
-
-    .cta {
-      text-align: center;
-      display: grid;
-      justify-items: center;
-      gap: 14px;
-      padding: 40px 18px;
-    }
-
-    .cta h2 {
-      font-size: clamp(2.2rem, 6vw, 3.7rem);
-      transform: rotate(-2deg);
-    }
-
-    .price {
-      position: relative;
-      font: 700 clamp(2.2rem, 7vw, 4.4rem)/1 Kalam, cursive;
-      color: #2f261c;
-      padding: 2px 10px;
-    }
-
-    .price::before {
-      content: "";
-      position: absolute;
-      inset: -14px -18px;
-      border: 3px solid var(--green);
-      border-radius: 50%;
-      transform: rotate(-8deg);
-    }
-
-    .sticker {
-      border: 0;
-      background: var(--yellow);
-      color: #2b1f13;
-      padding: 16px 32px;
-      font: 700 clamp(1.2rem, 2.4vw, 1.8rem)/1 Pangolin, cursive;
-      border-radius: 999px;
-      box-shadow: 0 10px 0 #d1ad39, 0 14px 28px rgba(43, 30, 16, 0.25);
-      transform: rotate(-4deg);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .sticker:hover {
-      transform: rotate(0deg) translateY(-2px);
-      box-shadow: 0 7px 0 #d1ad39, 0 16px 30px rgba(43, 30, 16, 0.3);
-    }
-
-    .tagline {
-      font-family: Kalam, cursive;
-      font-size: 1.2rem;
-      transform: rotate(1.2deg);
-    }
-
-    .arrow {
-      width: 76px;
-      height: 34px;
-      color: var(--coral);
-      animation: drift 6.2s ease-in-out infinite;
-    }
-
-    .label {
-      position: absolute;
-      top: 12px;
-      right: 18px;
-      padding: 6px 11px;
-      color: var(--stamp);
-      border: 2px dashed var(--stamp);
-      font: 700 0.72rem/1 Inter, sans-serif;
-      letter-spacing: 0.12em;
-      transform: rotate(8deg);
-      background: rgba(255, 246, 246, 0.35);
-    }
-
-    @media (max-width: 950px) {
-      .cover,
-      .about-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cover {
-        min-height: unset;
-      }
-
-      .cover .photo-wrap {
-        justify-content: start;
-      }
-
-      .variants {
-        grid-template-columns: repeat(2, minmax(160px, 1fr));
-      }
-
-      .moments-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .moments-grid .polaroid,
-      .film {
-        grid-column: auto;
-      }
-
-      .notes {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .postit {
-        position: static;
-        margin-top: 14px;
-      }
-
-      .section {
-        margin: 36px 0;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .page {
-        width: min(96vw, 640px);
-      }
-
-      .section {
-        padding: 24px 14px;
-      }
-
-      .variants,
-      .notes,
-      .mini-photos {
-        grid-template-columns: 1fr;
-      }
-
-      .moments-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .label {
-        position: static;
-        display: inline-block;
-        margin-bottom: 8px;
-      }
+    :root{
+      --bg:#FAFAF7;
+      --ink:#1a1a1a;
+      --yellow:#FFD60A;
+      --sage:#8BAF7C;
+      --rose:#D4918C;
+      --navy:#2C3E6B;
+      --r:16px;
+      --s1:0 8px 24px rgba(0,0,0,.08);
+      --s2:0 16px 40px rgba(0,0,0,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.45}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1140px,92vw);margin:0 auto}
+    .progress{position:fixed;top:0;left:0;height:3px;background:var(--yellow);width:0;z-index:80;transform-origin:left center}
+
+    .nav-wrap{position:sticky;top:0;z-index:70;background:rgba(250,250,247,.78);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+    .nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;padding:14px 0}
+    .logo{font-weight:800;font-size:1.1rem;letter-spacing:.2px}
+    .logo span{font-family:'Playfair Display',serif;font-style:italic}
+    .links{display:flex;gap:22px;justify-content:center;font-size:.95rem}
+    .shop-btn{justify-self:end;background:var(--ink);color:#fff;padding:11px 18px;border-radius:999px;font-weight:700;transition:transform .25s ease,box-shadow .25s ease}
+    .shop-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:var(--s1)}
+
+    section{padding:72px 0}
+    .reveal{opacity:0;transform:translate3d(0,32px,0);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:translate3d(0,0,0)}
+
+    .hero{display:grid;gap:28px;align-items:center}
+    .hero-copy h1{font-size:clamp(2.1rem,6vw,4.4rem);line-height:.98;margin:.1em 0 .4em}
+    .hero-copy p{font-size:1.05rem;max-width:45ch;color:#3d3d3d}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;font-weight:700;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+    .btn.main{background:var(--yellow);border:1px solid #e6be00}
+    .btn.alt{border:1px solid rgba(0,0,0,.2);background:#fff}
+    .btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:var(--s1)}
+    .hero-media{position:relative;padding:14px}
+    .hero-media::before{content:'';position:absolute;inset:6% auto auto 8%;width:76%;aspect-ratio:1;border-radius:50%;background:var(--yellow);z-index:-1;filter:blur(.3px)}
+    .frame{border-radius:28px;overflow:hidden;background:#fff;box-shadow:var(--s2)}
+    .score{position:absolute;top:20px;right:20px;background:#fff;border-radius:999px;padding:8px 12px;font-weight:800;box-shadow:var(--s1)}
+    .score b{font-size:1.2rem}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px;max-width:520px}
+    .stat{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:10px 12px}
+    .stat b{display:block;font-size:1.2rem}
+    .stat small{color:#555}
+
+    .marquee-wrap{background:#fff;padding:16px 0;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06);overflow:hidden}
+    .marquee{display:flex;gap:24px;white-space:nowrap;animation:slide 24s linear infinite;will-change:transform}
+    .marquee-wrap:hover .marquee{animation-play-state:paused}
+    .marquee span{font-weight:700}
+    .marquee .serif{font-family:'Playfair Display',serif;font-style:italic;font-weight:600}
+    .dot{opacity:.35}
+    @keyframes slide{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+    .head{text-align:center;max-width:700px;margin:0 auto 28px}
+    .head h2{font-size:clamp(1.7rem,4vw,3rem);margin:0 0 .25em}
+    .head p{color:#4a4a4a;margin:0}
+
+    .product-stage{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:28px;padding:28px;box-shadow:var(--s1)}
+    .product-visual{position:relative;max-width:720px;margin:0 auto}
+    .variant{position:absolute;inset:0;opacity:0;transition:opacity .45s ease}
+    .variant.active{opacity:1;position:relative}
+    .swatches{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:16px}
+    .swatch{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.2);cursor:pointer;transition:transform .2s ease}
+    .swatch:hover{transform:scale(1.08)}
+    .swatch.active{box-shadow:0 0 0 2px var(--ink)}
+    #colorName{margin-top:10px;text-align:center;font-weight:700}
+
+    .features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px}
+    .feature{background:#fff;border:1px solid rgba(0,0,0,.07);padding:20px;border-radius:var(--r);text-align:center;box-shadow:var(--s1)}
+    .feature svg{width:28px;height:28px;margin:0 auto 10px}
+
+    .story-grid{display:grid;gap:22px;align-items:center}
+    .story-image{border-radius:22px;overflow:hidden;box-shadow:var(--s1)}
+    .story-copy h3{font-size:clamp(1.5rem,3.4vw,2.6rem);margin:0 0 .4em}
+    .story-copy p{color:#444}
+    blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.3rem,2.2vw,1.8rem);margin:18px 0;color:#222}
+
+    .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+    .tile{border-radius:18px;overflow:hidden;position:relative;box-shadow:var(--s1)}
+    .tile.big{grid-column:span 4;grid-row:span 2}
+    .tile.tall{grid-column:span 2;grid-row:span 2}
+    .tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+    .tile:hover img{transform:scale(1.05)}
+
+    .reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .review{background:#fff;border-radius:var(--r);padding:18px;border:1px solid rgba(0,0,0,.08);box-shadow:var(--s1)}
+    .stars{color:#e0b500;letter-spacing:1px;margin-bottom:8px}
+    .meta{display:flex;justify-content:space-between;align-items:center;font-size:.92rem;color:#555}
+    .badge{padding:3px 8px;border-radius:999px;background:rgba(139,175,124,.18);color:#35552b;font-size:.75rem;font-weight:700}
+
+    .cta{background:linear-gradient(130deg,#FFD60A,#ffdf4a);padding:56px 0;border-radius:26px;box-shadow:var(--s2)}
+    .cta-inner{display:grid;gap:20px;align-items:center}
+    .cta h2{font-size:clamp(2rem,5vw,3.4rem);line-height:1;margin:0 0 .3em}
+    .price{font-size:2rem;font-weight:800;margin:0 0 12px}
+    .trust{display:flex;gap:10px;flex-wrap:wrap}
+    .trust span{background:rgba(255,255,255,.7);border-radius:999px;padding:7px 12px;font-weight:700;font-size:.88rem}
+    .float{max-width:340px;justify-self:center;animation:float 4s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-8px,0)}}
+
+    footer{padding:34px 0 76px;border-top:1px solid rgba(0,0,0,.08)}
+    .foot{display:grid;gap:14px;justify-items:center;text-align:center}
+    .social{display:flex;gap:16px}
+
+    .tilt{transform-style:preserve-3d;transition:transform .25s ease}
+
+    .mobile-bar{position:fixed;left:10px;right:10px;bottom:10px;background:#fff;border:1px solid rgba(0,0,0,.1);box-shadow:var(--s2);border-radius:18px;padding:10px;display:flex;gap:10px;align-items:center;justify-content:space-between;z-index:85;transform:translate3d(0,120%,0);transition:transform .35s ease}
+    .mobile-bar.show{transform:translate3d(0,0,0)}
+    .mobile-bar .btn{padding:10px 14px}
+
+    @media (min-width:860px){
+      .hero{grid-template-columns:1.05fr .95fr}
+      .story-grid{grid-template-columns:1fr 1fr}
+      .story-grid.flip .story-copy{order:1}
+      .story-grid.flip .story-image{order:2}
+      .cta-inner{grid-template-columns:1.1fr .9fr}
+    }
+    @media (max-width:859px){
+      .links{display:none}
+      .features,.reviews{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr 1fr}
+      .tile.big,.tile.tall{grid-column:span 2;grid-row:span 1}
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <div class="washi" style="--rot:-12deg;--tone:rgba(121,184,246,0.45);top:54px;left:-28px;"></div>
-    <div class="washi" style="--rot:8deg;--tone:rgba(232,111,92,0.5);top:390px;right:-24px;"></div>
-    <div class="washi" style="--rot:-5deg;--tone:rgba(108,168,111,0.5);top:980px;left:35%;"></div>
+  <div class="progress" id="progress"></div>
 
-    <section class="section paper cover reveal">
-      <div class="title-stack">
-        <p class="tiny-note tiny-a">stitched joy in every loop</p>
-        <h1>Be Happy Bag</h1>
-        <p class="scribble">A little handmade mood boost for market mornings, cafe afternoons, and bright corner moments.</p>
-        <span class="stamp">handmade with love</span>
-        <p class="tiny-note tiny-b">made with soft cotton yarn</p>
+  <div class="nav-wrap">
+    <nav class="container nav" aria-label="Main">
+      <a class="logo" href="#top">Be Happy <span>Bag</span></a>
+      <div class="links">
+        <a href="#product">Product</a>
+        <a href="#story">Story</a>
+        <a href="#reviews">Reviews</a>
       </div>
-      <div class="photo-wrap">
-        <div class="polaroid" style="--tilt:-5deg;">
-          <span class="tape-top"></span>
-          <img src="product-photo.jpg" alt="Be Happy Bag featured product photo">
-          <p class="caption">our sunny yarn favorite</p>
+      <a class="shop-btn" href="#cta">Shop Now</a>
+    </nav>
+  </div>
+
+  <main id="top">
+    <section class="container hero reveal">
+      <div class="hero-copy">
+        <h1>Carry Something That Makes You Smile</h1>
+        <p>A handmade cotton canvas bag with bright personality, clean lines, and room for your full day.</p>
+        <div class="hero-actions">
+          <a class="btn main" href="#cta">Shop Now</a>
+          <a class="btn alt" href="#story">Watch Story</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b data-count="12000">0</b><small>Happy customers</small></div>
+          <div class="stat"><b data-count="4.9">0</b><small>Average rating</small></div>
+          <div class="stat"><b data-count="100">0</b><small>Cotton canvas</small></div>
         </div>
       </div>
-      <svg class="doodle d1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M49 8l7 22h23l-19 14 7 22-18-13-18 13 7-22-19-14h23z" />
-      </svg>
-      <svg class="doodle d2" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M23 37c0-10 8-18 18-18 7 0 12 4 16 9 4-5 9-9 16-9 10 0 18 8 18 18 0 20-34 38-34 38S23 57 23 37z" />
-      </svg>
+      <div class="hero-media">
+        <div class="frame"><img src="product-photo.jpg" alt="Be Happy Bag product photo"></div>
+        <div class="score" aria-label="Rated five out of five"><b>5</b> star rated</div>
+      </div>
     </section>
 
-    <section class="section paper lined reveal" id="about">
-      <span class="label">STORY PAGE</span>
-      <div class="about-grid">
-        <div>
-          <h2 style="font-size:clamp(2.1rem,5vw,3.4rem);transform:rotate(-1.5deg);margin-bottom:12px;">About The Bag</h2>
-          <p class="hand">I made this bag to carry simple happy things. Fresh flowers. A sketchbook. A warm pastry. Every stitch has a hand pulled texture, so each piece feels personal and a little playful.</p>
-          <p class="hand" style="margin-top:16px;transform:rotate(0.8deg);">The shape stays soft, the yarn stays cozy, and the bright color keeps the day cheerful. This is a small craft journal in bag form.</p>
+    <section class="marquee-wrap" aria-label="Brand highlights">
+      <div class="marquee" id="ticker">
+        <span>Handmade With Love</span><span class="dot">•</span>
+        <span class="serif">One of a Kind</span><span class="dot">•</span>
+        <span>Cotton Canvas</span><span class="dot">•</span>
+        <span class="serif">Eco Friendly</span><span class="dot">•</span>
+        <span>Lightweight Daily Carry</span><span class="dot">•</span>
+        <span class="serif">Made for Joy</span><span class="dot">•</span>
+        <span>Handmade With Love</span><span class="dot">•</span>
+        <span class="serif">One of a Kind</span><span class="dot">•</span>
+        <span>Cotton Canvas</span><span class="dot">•</span>
+        <span class="serif">Eco Friendly</span><span class="dot">•</span>
+        <span>Lightweight Daily Carry</span><span class="dot">•</span>
+        <span class="serif">Made for Joy</span>
+      </div>
+    </section>
+
+    <section class="container reveal" id="product">
+      <div class="head">
+        <h2>Your Bag, Your Color</h2>
+        <p>Pick a tone that fits your day. Each version keeps the same clean silhouette and premium finish.</p>
+      </div>
+      <div class="product-stage tilt">
+        <div class="product-visual" id="productVisual">
+          <img class="variant active" src="images/hero-white.png" alt="Be Happy Bag in white" data-name="Cloud White">
+          <img class="variant" src="images/variant-sage.png" alt="Be Happy Bag in sage" data-name="Soft Sage">
+          <img class="variant" src="images/variant-rose.png" alt="Be Happy Bag in rose" data-name="Dusty Rose">
+          <img class="variant" src="images/variant-navy.png" alt="Be Happy Bag in navy" data-name="Deep Navy">
         </div>
-        <div class="mini-photos">
-          <div class="polaroid" style="--tilt:4deg;"><span class="tape-corner"></span><img src="images/hero-white.png" alt="Bag on white backdrop"><p class="caption">studio sunlight shot</p></div>
-          <div class="polaroid" style="--tilt:-3deg;"><span class="tape-corner"></span><img src="images/lifestyle-flatlay.png" alt="Bag in a flatlay"><p class="caption">flatlay diary scene</p></div>
+        <div class="swatches" role="tablist" aria-label="Color selector">
+          <button class="swatch active" style="background:#f5f5f2" data-target="0" aria-label="Cloud White"></button>
+          <button class="swatch" style="background:var(--sage)" data-target="1" aria-label="Soft Sage"></button>
+          <button class="swatch" style="background:var(--rose)" data-target="2" aria-label="Dusty Rose"></button>
+          <button class="swatch" style="background:var(--navy)" data-target="3" aria-label="Deep Navy"></button>
         </div>
-      </div>
-      <div class="postit yellow" style="--stick-rot:-7deg;top:28px;right:-24px;">Fun fact<br>Each handle is reinforced so it keeps shape while staying soft.</div>
-      <div class="postit blue" style="--stick-rot:6deg;bottom:-22px;left:30px;">Craft note<br>Color is inspired by marigold petals and summer markets.</div>
-    </section>
-
-    <section class="section paper reveal" id="colors">
-      <div class="colors-head">
-        <h2>Color Collection</h2>
-        <p class="smallprint">tap a polaroid and feel it lift</p>
-      </div>
-      <div class="variants">
-        <article class="variant-card" style="--vrot:-6deg;">
-          <span class="pin"></span>
-          <div class="polaroid" style="--tilt:-3deg;"><img src="images/variant-rose.png" alt="Rose color Be Happy Bag"><p class="caption">rose petal</p></div>
-        </article>
-        <article class="variant-card" style="--vrot:3deg;">
-          <span class="pin"></span>
-          <div class="polaroid" style="--tilt:2deg;"><img src="images/variant-sage.png" alt="Sage color Be Happy Bag"><p class="caption">sage leaf</p></div>
-        </article>
-        <article class="variant-card" style="--vrot:-2deg;">
-          <span class="pin"></span>
-          <div class="polaroid" style="--tilt:-4deg;"><img src="images/variant-navy.png" alt="Navy color Be Happy Bag"><p class="caption">deep navy</p></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section paper reveal" id="moments">
-      <h2 style="font-size:clamp(2rem,5vw,3.4rem);margin-bottom:16px;transform:rotate(-1.6deg);">Moments</h2>
-      <div class="moments-grid">
-        <div class="polaroid"><span class="tape-top"></span><img src="images/lifestyle-market.png" alt="Bag at a market"><p class="caption">market morning</p></div>
-        <div class="polaroid"><span class="tape-top"></span><img src="images/lifestyle-cafe.png" alt="Bag at a cafe"><p class="caption">cafe window light</p></div>
-        <div class="polaroid"><span class="tape-top"></span><img src="images/lifestyle-flatlay.png" alt="Bag in a cozy flatlay"><p class="caption">slow weekend mood</p></div>
-        <div class="film">
-          <img src="images/lifestyle-market.png" alt="Film strip market frame">
-          <img src="images/lifestyle-cafe.png" alt="Film strip cafe frame">
-          <img src="images/lifestyle-flatlay.png" alt="Film strip flatlay frame">
+        <p id="colorName">Cloud White</p>
+        <div class="features">
+          <article class="feature tilt">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12l5 5L20 6" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Hand Stitched</h3>
+            <p>Made in small batches with detailed finishing.</p>
+          </article>
+          <article class="feature tilt">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c4 3 7 6 7 10a7 7 0 1 1-14 0c0-4 3-7 7-10Z" stroke="#1a1a1a" stroke-width="2"/></svg>
+            <h3>Eco Cotton</h3>
+            <p>Durable canvas with a soft and natural hand feel.</p>
+          </article>
+          <article class="feature tilt">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 15c5 0 7-6 12-6h4" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="16" r="2" fill="#1a1a1a"/></svg>
+            <h3>Lightweight</h3>
+            <p>Comfortable carry from morning market to night cafe.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section paper reveal" id="love-notes">
-      <h2 style="font-size:clamp(2rem,5vw,3.3rem);transform:rotate(1.4deg);">Love Notes</h2>
-      <div class="notes">
-        <article class="love-note" style="--nrot:-4deg;--note-color:#f7e57a;">
-          <b>So cheerful</b>
-          <p>I smile every time I grab this bag. The yarn texture feels so warm and special.</p>
-          <small>Hana</small>
+    <section class="container reveal" id="story">
+      <div class="story-grid">
+        <div class="story-image tilt"><img src="images/lifestyle-market.png" alt="Be Happy Bag in the market"></div>
+        <div class="story-copy">
+          <h3>Made for Real Days</h3>
+          <p>We designed this bag for movement, coffee runs, quick errands, and spontaneous plans. It carries the essentials while keeping your look clean.</p>
+          <blockquote>"A simple bag with a bright spirit can shift the mood of your whole day."</blockquote>
+        </div>
+      </div>
+      <div class="story-grid flip" style="margin-top:22px">
+        <div class="story-copy">
+          <h3>Crafted With Care</h3>
+          <p>Every stitch is checked, every strap is tested, and every color is chosen to feel current yet timeless. The result is utility with personality.</p>
+        </div>
+        <div class="story-image tilt"><img src="images/lifestyle-cafe.png" alt="Be Happy Bag at a cafe"></div>
+      </div>
+    </section>
+
+    <section class="container reveal" id="gallery">
+      <div class="head">
+        <h2>In Your World</h2>
+        <p>Styled for city walks, produce runs, and easy everyday moments.</p>
+      </div>
+      <div class="gallery">
+        <figure class="tile big"><img src="images/lifestyle-flatlay.png" alt="Be Happy Bag flatlay"></figure>
+        <figure class="tile tall"><img src="images/lifestyle-market.png" alt="Be Happy Bag market scene"></figure>
+        <figure class="tile"><img src="images/lifestyle-cafe.png" alt="Be Happy Bag cafe scene"></figure>
+        <figure class="tile"><img src="product-photo.jpg" alt="Be Happy Bag product detail"></figure>
+      </div>
+    </section>
+
+    <section class="container reveal" id="reviews">
+      <div class="head">
+        <h2>People Love This Bag</h2>
+        <p>Trusted by customers across cities who wanted one daily bag that feels joyful.</p>
+      </div>
+      <div class="reviews">
+        <article class="review tilt">
+          <div class="stars">★★★★★</div>
+          <p>Looks premium, feels sturdy, and holds more than I expected. I use it every day.</p>
+          <div class="meta"><span>Rina, Austin</span><span class="badge">Verified</span></div>
         </article>
-        <article class="love-note" style="--nrot:3deg;--note-color:#f8c1ca;">
-          <b>Handmade charm</b>
-          <p>Friends keep asking where I found it. It looks crafted with real care.</p>
-          <small>Maria</small>
+        <article class="review tilt">
+          <div class="stars">★★★★★</div>
+          <p>The yellow detail is such a nice touch. It feels polished but still playful.</p>
+          <div class="meta"><span>Marcos, Seattle</span><span class="badge">Verified</span></div>
         </article>
-        <article class="love-note" style="--nrot:-2deg;--note-color:#b7e0ff;">
-          <b>Perfect size</b>
-          <p>It holds my daily must have items and still looks light and pretty.</p>
-          <small>Elle</small>
+        <article class="review tilt">
+          <div class="stars">★★★★★</div>
+          <p>Lightweight, clean shape, and strong straps. This replaced my old tote instantly.</p>
+          <div class="meta"><span>Nia, Chicago</span><span class="badge">Verified</span></div>
         </article>
       </div>
     </section>
 
-    <section class="section paper cta reveal" id="shop">
-      <h2>Get Yours</h2>
-      <p class="tagline">grab a handmade piece before this batch is gone</p>
-      <div class="price">$45</div>
-      <svg class="arrow" viewBox="0 0 120 50" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M4 10c20 2 44 10 56 22" />
-        <path d="M45 31l15 1-3 13" />
-      </svg>
-      <button class="sticker" type="button">Add to Bag</button>
+    <section class="container reveal" id="cta">
+      <div class="cta">
+        <div class="container cta-inner">
+          <div>
+            <h2>Ready to Be Happy?</h2>
+            <p class="price">$45</p>
+            <a class="btn main" href="#top">Add to Cart</a>
+            <div class="trust" style="margin-top:16px">
+              <span>Free Shipping</span>
+              <span>Handmade</span>
+              <span>30 Day Returns</span>
+            </div>
+          </div>
+          <img class="float" src="images/hero-white.png" alt="Be Happy Bag floating product shot">
+        </div>
+      </div>
     </section>
   </main>
 
+  <footer>
+    <div class="container foot">
+      <strong>Be Happy Bag</strong>
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="TikTok">TT</a>
+        <a href="#" aria-label="Pinterest">PT</a>
+      </div>
+      <small>© 2026 Be Happy Bag. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <div class="mobile-bar" id="mobileBar" aria-label="Quick add to cart">
+    <strong>$45</strong>
+    <a href="#cta" class="btn main">Add to Cart</a>
+  </div>
+
   <script>
-    const observer = new IntersectionObserver((entries) => {
+    const progress = document.getElementById('progress');
+    const mobileBar = document.getElementById('mobileBar');
+    const hero = document.querySelector('.hero');
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const p = max > 0 ? (h.scrollTop / max) : 0;
+      progress.style.width = (p * 100) + '%';
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      mobileBar.classList.toggle('show', heroBottom < 0 && window.innerWidth < 860);
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          observer.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) entry.target.classList.add('in');
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-    document.querySelectorAll('.polaroid').forEach((card) => {
-      card.addEventListener('click', () => {
-        card.classList.add('pop');
-        card.style.transform = 'rotate(0deg) translateY(-10px) scale(1.04)';
-        card.style.boxShadow = '0 26px 40px rgba(34,21,10,0.3)';
-        setTimeout(() => {
-          card.classList.remove('pop');
-          card.style.transform = '';
-          card.style.boxShadow = '';
-        }, 260);
+    const variants = [...document.querySelectorAll('.variant')];
+    const swatches = [...document.querySelectorAll('.swatch')];
+    const colorName = document.getElementById('colorName');
+    swatches.forEach((sw) => {
+      sw.addEventListener('click', () => {
+        const idx = Number(sw.dataset.target);
+        swatches.forEach(s => s.classList.remove('active'));
+        sw.classList.add('active');
+        variants.forEach(v => v.classList.remove('active'));
+        variants[idx].classList.add('active');
+        colorName.textContent = variants[idx].dataset.name;
       });
     });
+
+    const tiltEls = document.querySelectorAll('.tilt');
+    tiltEls.forEach((el) => {
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        const rx = (0.5 - y) * 5;
+        const ry = (x - 0.5) * 5;
+        el.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg)';
+      });
+    });
+
+    const countEls = document.querySelectorAll('[data-count]');
+    const runCounter = (el) => {
+      const end = Number(el.dataset.count);
+      const hasDecimal = end % 1 !== 0;
+      const start = performance.now();
+      const dur = 1400;
+      const step = (now) => {
+        const t = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = end * eased;
+        el.textContent = hasDecimal ? val.toFixed(1) : Math.round(val).toLocaleString();
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const counterIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !entry.target.dataset.done) {
+          entry.target.dataset.done = '1';
+          runCounter(entry.target);
+        }
+      });
+    }, { threshold: 0.7 });
+    countEls.forEach((el) => counterIO.observe(el));
   </script>
 </body>
 </html>
